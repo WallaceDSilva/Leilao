@@ -36,6 +36,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnVendas = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        rdbFiltrarVendidosBotao = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +87,13 @@ public class listagemVIEW extends javax.swing.JFrame {
             }
         });
 
+        rdbFiltrarVendidosBotao.setText("Somente Vendidos !");
+        rdbFiltrarVendidosBotao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbFiltrarVendidosBotaoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +113,8 @@ public class listagemVIEW extends javax.swing.JFrame {
                             .addComponent(btnVoltar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnVendas, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rdbFiltrarVendidosBotao))
                 .addContainerGap(49, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +135,9 @@ public class listagemVIEW extends javax.swing.JFrame {
                     .addComponent(btnVender))
                 .addGap(29, 29, 29)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdbFiltrarVendidosBotao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVendas)
                     .addComponent(btnVoltar))
@@ -170,6 +181,12 @@ public class listagemVIEW extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_listaProdutosMouseClicked
+
+    private void rdbFiltrarVendidosBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbFiltrarVendidosBotaoActionPerformed
+
+        listarProdutos();
+
+    }//GEN-LAST:event_rdbFiltrarVendidosBotaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +234,7 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable listaProdutos;
+    private javax.swing.JRadioButton rdbFiltrarVendidosBotao;
     // End of variables declaration//GEN-END:variables
 
     private void listarProdutos() {
@@ -225,8 +243,10 @@ public class listagemVIEW extends javax.swing.JFrame {
 
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
+            
+           boolean filtro = rdbFiltrarVendidosBotao.isSelected();
 
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
+            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos(filtro);
 
             for (int i = 0; i < listagem.size(); i++) {
                 model.addRow(new Object[]{

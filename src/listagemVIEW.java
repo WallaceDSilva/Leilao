@@ -162,7 +162,10 @@ public class listagemVIEW extends javax.swing.JFrame {
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
         vendasVIEW vendas = new vendasVIEW();
+        dispose();
         vendas.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void listaProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProdutosMouseClicked
@@ -185,7 +188,6 @@ public class listagemVIEW extends javax.swing.JFrame {
     private void rdbFiltrarVendidosBotaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbFiltrarVendidosBotaoActionPerformed
 
         listarProdutos();
-
     }//GEN-LAST:event_rdbFiltrarVendidosBotaoActionPerformed
 
     /**
